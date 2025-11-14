@@ -1,0 +1,5 @@
+Flask==1.0        # outdated, security issues (SCA target)
+requests==2.9.1   # known vulnerable version
+PyYAML==3.12       # vulnerable to CVE-2017-18342
+jinja2==2.10        # SSTI + CWE-1333 vulnerability
+MarkupSafe==1.0     # vulnerable old version
