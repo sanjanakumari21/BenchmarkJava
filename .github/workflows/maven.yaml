@@ -29,9 +29,11 @@ jobs:
     
 #    - name: Setup Snyk to check for vulnerabilities
 #      uses: snyk/actions/setup@master
-#    - name: run snyk
-#      run: |
-#       echo $JAVA_HOME
+    - name: run snyk
+      run: |
+       docker run --rm snyk/snyk:maven-3-jdk-11 env | grep JAVA_HOME
+
+#echo $JAVA_HOME
 #       mvn --version
 #       java --version
 #       docker pull snyk/snyk:maven
