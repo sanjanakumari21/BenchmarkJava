@@ -34,4 +34,4 @@ jobs:
       uses: snyk/actions/maven-3-jdk-11@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        JAVA_HOME: /usr/lib/jvm/java-11-openjdk
+        JAVA_HOME: /opt/java/openjdk
