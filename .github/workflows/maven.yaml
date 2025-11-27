@@ -28,7 +28,7 @@ jobs:
        mvn --version
        java --version
        docker pull snyk/snyk:maven
-       docker run snyk/snyk:maven
+       docker run snyk/snyk:maven --workdir /github/workspace "JAVA_HOME" -e "SNYK_TOKEN" -e "snyk" "test"
        docker ps
 #       snyk test
       env:
