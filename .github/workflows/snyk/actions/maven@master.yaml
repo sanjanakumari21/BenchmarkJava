@@ -31,7 +31,7 @@ jobs:
     # RUN SNYK WITH THE CORRECT JAVA_HOME FOR THE CONTAINER
     ########################################################
     - name: Run Snyk via Docker Action
-      uses: snyk/actions/maven-3-jdk-11@master
+      uses: snyk/actions/maven@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         JAVA_HOME: /opt/java/openjdk
