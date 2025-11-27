@@ -25,5 +25,6 @@ jobs:
     - name: run snyk
       run: |
        echo $JAVA_HOME
+       snyk test
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}      
