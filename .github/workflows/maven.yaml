@@ -16,6 +16,8 @@ jobs:
       with:
         java-version: '11'
         distribution: 'zulu'
+    - name: print java_home
+      run: echo "JAVA_HOME= $JAVA_HOME"
     - name: Run Spotless check
       run: mvn spotless:check
     - name: Create WAR
