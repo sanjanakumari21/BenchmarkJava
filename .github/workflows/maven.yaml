@@ -28,6 +28,8 @@ jobs:
        mvn --version
        java --version
        docker pull snyk/snyk:maven
+       docker run snyk/snyk:maven
+       docker ps
 #       snyk test
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}      
