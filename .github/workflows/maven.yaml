@@ -17,7 +17,11 @@ jobs:
         java-version: '11'
         distribution: 'zulu'
     - name: print java_home
-      run: echo "JAVA_HOME= $JAVA_HOME" >> $GITHUB_ENV
+      run: | 
+       echo $JAVA_HOME
+       echo "$JAVA_HOME" >> $GITHUB_ENV
+       echo $GITHUB_ENV
+       
     - name: Run Spotless check
       run: mvn spotless:check
     - name: Create WAR
