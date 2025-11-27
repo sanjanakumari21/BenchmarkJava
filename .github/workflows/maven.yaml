@@ -21,7 +21,7 @@ jobs:
     - name: Run Spotless check
       run: mvn spotless:check
     - name: Run Snyk to check for vulnerabilities
-      uses: maven-3-jdk-11@master
+      uses: snyk/actions/maven-3-jdk-11@master
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           JAVA_HOME: ${{ env.JAVA_HOME }}
