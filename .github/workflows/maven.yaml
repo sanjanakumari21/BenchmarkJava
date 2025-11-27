@@ -25,6 +25,9 @@ jobs:
     - name: run snyk
       run: |
        echo $JAVA_HOME
-       snyk test
+       mvn --version
+       java --version
+       docker pull snyk/snyk:maven
+#       snyk test
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}      
