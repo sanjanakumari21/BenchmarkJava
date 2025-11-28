@@ -20,16 +20,10 @@ jobs:
 
     - name: Run Spotless check
       run: mvn spotless:check
-
-    ##############################################
-    # SHOW JAVA_HOME INSIDE THE SNYK DOCKER IMAGE
-    ##############################################
+   
     - name: Show JAVA_HOME inside Snyk container
       run: docker run --rm snyk/snyk:maven-3-jdk-11 env | grep JAVA_HOME
 
-    ########################################################
-    # RUN SNYK WITH THE CORRECT JAVA_HOME FOR THE CONTAINER
-    ########################################################
     - name: Run Snyk via Docker Action
       uses: snyk/actions/maven@master
       env:
