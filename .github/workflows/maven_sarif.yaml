@@ -23,7 +23,10 @@ jobs:
    
     - name: Show JAVA_HOME inside Snyk container
       run: docker run --rm snyk/snyk:maven-3-jdk-11 env | grep JAVA_HOME
-
+    - name: list fiel for debugging
+      run: |
+        pwd
+        ls -R
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/maven@master
       continue-on-error: true # To make sure that SARIF upload gets called
