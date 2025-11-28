@@ -29,6 +29,7 @@ jobs:
       continue-on-error: true # To make sure that SARIF upload gets called
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        JAVA_HOME: /opt/java/openjdk
       with:
         args: --sarif-file-output=snyk.sarif
     - name: list file for debugging
