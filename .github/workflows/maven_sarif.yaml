@@ -34,7 +34,9 @@ jobs:
         args: --sarif-file-output=snyk.sarif
     - name: list file for debugging
       run: |
-        cat snyk.sarif
+        cat snyk.sarif | grep undefined
+        sed -i 's/"security-severity": "undefined"/"security-severity": "0"/g' snyk.sarif
+        cat snyk.sarif | grep undefined
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v3
       with:
