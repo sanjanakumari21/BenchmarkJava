@@ -7,11 +7,11 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           JAVA_HOME:  /opt/java/openjdk
       - name: Run Snyk Monitor if no high severity
-        continue-on-error: true
         run: |
           docker run --rm -v ${{ github.workspace }}:/project -w /project snyk/snyk:maven-3-jdk-11 test --all-projects --json > snyk_result.json || true
           HIGH_COUNT=$(jq '.vulnerabilities | map(select(.severity=="high")) | length' snyk_result.json)
