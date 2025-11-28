@@ -11,16 +11,20 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           JAVA_HOME:  /opt/java/openjdk
-      - name: Run Snyk Monitor if no high severity
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/project -w /project snyk/snyk:maven-3-jdk-11 test --all-projects --json > snyk_result.json || true
-          HIGH_COUNT=$(jq '.vulnerabilities | map(select(.severity=="high")) | length' snyk_result.json)
-          echo "High vulnerabilities found: $HIGH_COUNT"
-          if [ "$HIGH_COUNT" -eq 0 ]; then
-          echo "No high vulnerabilities, running monitor..."
-          docker run --rm -v ${{ github.workspace }}:/project -w /project snyk/snyk:maven-3-jdk-11 monitor
-          else
-            echo "High vulnerabilities found, skipping monitor."
-          fi
-          env:
-           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Run Snyk Test
+        id: snyk_test
+        uses: snyk/actions/maven@master
+        continue-on-error: true       
+        with:
+         command: test
+         severity-threshold: high  
+        env:
+         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Run Snyk Monitor
+        if: ${{ steps.snyk_test.outcome == 'success' }}
+        uses: snyk/actions/maven@master
+        with:
+         command: monitor
+        env:
+         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
