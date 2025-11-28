@@ -34,6 +34,7 @@ jobs:
         args: --sarif-file-output=snyk.sarif
     - name: list file for debugging
       run: |
+        continue-on-error: true
         cat snyk.sarif | grep undefined
         sed -i 's/"security-severity": "undefined"/"security-severity": "0"/g' snyk.sarif
         cat snyk.sarif | grep undefined
