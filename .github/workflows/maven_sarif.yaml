@@ -34,8 +34,7 @@ jobs:
         args: --sarif-file-output=snyk.sarif
     - name: list file for debugging
       run: |
-        pwd
-        ls -R
+        cat snyk.sarif
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v3
       with:
