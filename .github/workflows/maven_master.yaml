@@ -26,6 +26,8 @@ jobs:
 
     - name: Run Snyk via Docker Action
       uses: snyk/actions/maven@master
+      with:
+        command: monitor
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         JAVA_HOME: /opt/java/openjdk
